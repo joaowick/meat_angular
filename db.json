@@ -370,5 +370,110 @@
       "restaurantId": "tasty-treats"
     }
   ],
-  "orders": []
+  "orders": [
+    {
+      "address": "Gaspar Barreto",
+      "number": "290",
+      "optionalAddress": "Casa 02",
+      "paymentOptions": "DEB",
+      "orderItems": [
+        {
+          "quantity": 1,
+          "menuId": "capp"
+        }
+      ],
+      "id": 1
+    },
+    {
+      "address": "Rua Boa Vista",
+      "number": "54",
+      "optionalAddress": "",
+      "paymentOptions": "REF",
+      "orderItems": [
+        {
+          "quantity": 1,
+          "menuId": "capp"
+        }
+      ],
+      "id": 2
+    },
+    {
+      "address": "Rua Caperuçu",
+      "number": "41",
+      "optionalAddress": "",
+      "paymentOptions": "DEB",
+      "orderItems": [
+        {
+          "quantity": 2,
+          "menuId": "burger"
+        }
+      ],
+      "id": 3
+    },
+    {
+      "address": "Avenidão",
+      "number": "89",
+      "optionalAddress": "",
+      "paymentOptions": "REF",
+      "orderItems": [
+        {
+          "quantity": 1,
+          "menuId": "sunday"
+        },
+        {
+          "quantity": 1,
+          "menuId": "chocpop"
+        }
+      ],
+      "id": 4
+    },
+    {
+      "name": "Joao Torres Moreia",
+      "email": "joao@gmail.com",
+      "emailConfirmation": "joao@gmail.com",
+      "address": "Juscelino Kedney",
+      "number": "08",
+      "optionalAddress": "",
+      "paymentOptions": "DEB",
+      "orderItems": [
+        {
+          "quantity": 1,
+          "menuId": "greensandwich"
+        }
+      ],
+      "id": 5
+    },
+    {
+      "name": "Jennifer Yuki Furukawa",
+      "email": "jennifer@outlook.com",
+      "emailConfirmation": "jennifer@outlook.com",
+      "address": "Rua Sebastião Cerrato",
+      "number": "89",
+      "optionalAddress": "",
+      "paymentOptions": "REF",
+      "orderItems": [
+        {
+          "quantity": 2,
+          "menuId": "cup-cake"
+        }
+      ],
+      "id": 6
+    },
+    {
+      "name": "Itamar Alves",
+      "email": "ramaty70@hotmail.com",
+      "emailConfirmation": "ramaty70@hotmail.com",
+      "address": "Avenida Ceci",
+      "number": "1400",
+      "optionalAddress": "",
+      "paymentOptions": "MON",
+      "orderItems": [
+        {
+          "quantity": 2,
+          "menuId": "cup-cake"
+        }
+      ],
+      "id": 7
+    }
+  ]
 }
