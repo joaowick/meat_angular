@@ -6,6 +6,7 @@ import { Order, OrderItem } from './order.model';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, AbstractControl, FormControl } from '@angular/forms';
 import { validateConfig } from '@angular/router/src/config';
+import {tap} from 'rxjs/operators'
 
 @Component({
   selector: 'mt-order',
@@ -81,13 +82,15 @@ export class OrderComponent implements OnInit {
     return this.orderId !== undefined
   }
 
-  // checkOrder(order: Order) {
-  //   order.orderItems = this.cartItems()
-  //     .map((item:CartItem)=>new OrderItem(item.quantity, item.menuItem.id))
-  //   this.orderService.checkOrder(order)
-  //     .subscribe((orderId: string) => {
-  //       this.router.navigate(['/order-summary'])
-  //       this.orderService.clear()
-  //     })
-  // }
+  checkOrder(order: Order) {
+    order.orderItems = this.cartItems()
+      .map((item:CartItem)=>new OrderItem(item.quantity, item.menuItem.id))
+    this.orderService.checkOrder(order)
+    .pipe(tap((orderId: string) =>  {
+      this.orderId = orderId}))
+      .subscribe((orderId: string) => {
+        this.router.navigate(['/order-summary'])
+        this.orderService.clear()
+      })
+  }
 }
