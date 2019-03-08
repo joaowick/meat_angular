@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { ShoppingCartComponent } from "app/restaurant-detail/shopping-cart/shopping-cart.component";
 import { ShoppingCartService } from "app/restaurant-detail/shopping-cart/shopping-cart.service";
 import { CartItem } from "app/restaurant-detail/shopping-cart/cart-file.model";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs/observable";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { MEAT_API } from "app/app.api";
 import { Order } from "./order.model";
@@ -37,7 +37,7 @@ export class OrderService {
         return this.http.post<Order>(`${MEAT_API}/orders`, order)
             .map(order => order.id)
     }
-
+    
     clear() {
         this.cartService.clear()
     }
