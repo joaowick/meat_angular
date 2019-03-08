@@ -3,7 +3,7 @@ import { ShoppingCartComponent } from "app/restaurant-detail/shopping-cart/shopp
 import { ShoppingCartService } from "app/restaurant-detail/shopping-cart/shopping-cart.service";
 import { CartItem } from "app/restaurant-detail/shopping-cart/cart-file.model";
 import { Observable } from "rxjs/observable";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http"
 import { MEAT_API } from "app/app.api";
 import { Order } from "./order.model";
 import { LoginService } from "app/security/login/login.service";
@@ -33,9 +33,9 @@ export class OrderService {
         return this.cartService.total()
     }
 
-    checkOrder(order: Order): Observable<string> {
-        return this.http.post<Order>(`${MEAT_API}/orders`, order)
-            .map(order => order.id)
+
+    checkOrder(order: Order): Observable<Order> {
+        return this.http.post<Order>(`${MEAT_API}/orders`, order);
     }
     
     clear() {
