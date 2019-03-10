@@ -14,14 +14,16 @@ import {tap} from 'rxjs/operators'
 })
 export class OrderComponent implements OnInit {
 
+  constructor(private orderService: OrderService,
+    private router: Router,
+    private formBuilder: FormBuilder) { }
+
   orderForm: FormGroup
-
   delivery: number = 8
-
+  orderCreated: Order;
   orderId: string
 
   emailPattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
-
   numberPattern = /^[0-9]*$/
 
   paymentOptions: RadioOption[] = [
@@ -30,13 +32,15 @@ export class OrderComponent implements OnInit {
     {label: 'Cartão de Refeição', value: 'REF'}
   ]
 
-  itemsValue(): number {
-    return this.orderService.itemsValue()
+  static equalsTo(group: AbstractControl): {[key: string]: boolean} {
+    const email = group.get('email')
+    const emailConfirmation = group.get('emailConfirmation')
+    if ((email.value  && emailConfirmation.value) &&
+        (email.value !== emailConfirmation.value)) {
+      return { emailsNotMatch: true };
+    }
+    return undefined;
   }
-
-  constructor(private orderService: OrderService,
-              private router: Router,
-              private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.orderForm = this.formBuilder.group({
@@ -47,17 +51,11 @@ export class OrderComponent implements OnInit {
       number: this.formBuilder.control('', [Validators.required, Validators.pattern(this.numberPattern)]),
       optionalAddress: this.formBuilder.control(''),
       paymentOptions: this.formBuilder.control('', [Validators.required])
-    }, {validator: OrderComponent.equalsTo})
+    }, {validators: OrderComponent.equalsTo})
   }
 
-  static equalsTo(group: AbstractControl): {[key: string]: boolean} {
-    const email = group.get('email')
-    const emailConfirmation = group.get('emailConfirmation')
-    if ((email.value  && emailConfirmation.value) &&
-        (email.value !== emailConfirmation.value)) {
-      return { emailsNotMatch: true };
-    }
-    return undefined;
+  itemsValue(): number {
+    return this.orderService.itemsValue()
   }
 
   cartItems(): CartItem[] {
@@ -91,4 +89,5 @@ export class OrderComponent implements OnInit {
         this.orderService.clear()
       })
   }
+
 }
