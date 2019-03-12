@@ -33,9 +33,9 @@ export class OrderComponent implements OnInit {
   ]
 
   static equalsTo(group: AbstractControl): {[key: string]: boolean} {
-    const email = group.get('email').value
-    const emailConfirmation = group.get('emailConfirmation').value
-    debugger;
+    console.log('entrou')
+    const email = group.get('email')
+    const emailConfirmation = group.get('emailConfirmation')
     if ((email.value  && emailConfirmation.value) && (email.value !== emailConfirmation.value)) {
       return { emailsNotMatch: true };
     }
@@ -43,7 +43,6 @@ export class OrderComponent implements OnInit {
   }
 
   ngOnInit() {
-    debugger
     this.orderForm = this.formBuilder.group({
       name: this.formBuilder.control('', [Validators.required, Validators.minLength(5)]),
       email: this.formBuilder.control('', [Validators.required, Validators.pattern(this.emailPattern)]),
@@ -52,7 +51,7 @@ export class OrderComponent implements OnInit {
       number: this.formBuilder.control('', [Validators.required, Validators.pattern(this.numberPattern)]),
       optionalAddress: this.formBuilder.control(''),
       paymentOptions: this.formBuilder.control('', [Validators.required])
-    }, {validators: OrderComponent.equalsTo})
+    }, {validator: OrderComponent.equalsTo})
   }
 
   itemsValue(): number {
