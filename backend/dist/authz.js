@@ -3,6 +3,7 @@ exports.__esModule = true;
 var jwt = require("jsonwebtoken");
 var api_config_1 = require("./api-config");
 exports.handleAuthorization = function (req, resp, next) {
+    debugger;
     var token = extractToken(req);
     if (!token) {
         resp.setHeader('WWW-Authenticate', 'Bearer token_type="JWT"');
@@ -23,7 +24,7 @@ function extractToken(req) {
     var token = undefined;
     if (req.headers && req.headers.authorization) {
         // Authorization: Bearer ZZZ.ZZZ.ZZZ
-        var parts = req.headers.authorization.split(' ');
+        var parts = req.headers.authorization.toString().split(' ');
         if (parts.length === 2 && parts[0] === 'Bearer') {
             token = parts[1];
         }

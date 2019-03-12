@@ -13,7 +13,7 @@ export class AuthInterceptor implements HttpInterceptor {
         if (loginService.isLoggedIn()){
             const authRequest = request.clone(
                 {setHeaders:{'Authorization': `Bearer ${loginService.user.accessToken}`}})
-            return next.handle(request)
+            return next.handle(authRequest)
         } else {
             return next.handle(request)
         }

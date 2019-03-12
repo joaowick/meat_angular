@@ -11,6 +11,7 @@ export class OrderSummaryComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
   rate() {

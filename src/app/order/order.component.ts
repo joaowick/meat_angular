@@ -33,16 +33,17 @@ export class OrderComponent implements OnInit {
   ]
 
   static equalsTo(group: AbstractControl): {[key: string]: boolean} {
-    const email = group.get('email')
-    const emailConfirmation = group.get('emailConfirmation')
-    if ((email.value  && emailConfirmation.value) &&
-        (email.value !== emailConfirmation.value)) {
+    const email = group.get('email').value
+    const emailConfirmation = group.get('emailConfirmation').value
+    debugger;
+    if ((email.value  && emailConfirmation.value) && (email.value !== emailConfirmation.value)) {
       return { emailsNotMatch: true };
     }
-    return undefined;
+    return undefined
   }
 
   ngOnInit() {
+    debugger
     this.orderForm = this.formBuilder.group({
       name: this.formBuilder.control('', [Validators.required, Validators.minLength(5)]),
       email: this.formBuilder.control('', [Validators.required, Validators.pattern(this.emailPattern)]),
@@ -82,12 +83,13 @@ export class OrderComponent implements OnInit {
     order.orderItems = this.cartItems()
       .map((item:CartItem)=>new OrderItem(item.quantity, item.menuItem.id))
     this.orderService.checkOrder(order)
-    .pipe(tap((orderId: string) =>  {
-      this.orderId = orderId}))
+      .pipe(tap((orderId: string) => {
+        this.orderId = orderId
+      }))
       .subscribe((orderId: string) => {
         this.router.navigate(['/order-summary'])
+          console.log(`Compra concluída: ${orderId}`);
         this.orderService.clear()
       })
   }
-
 }
